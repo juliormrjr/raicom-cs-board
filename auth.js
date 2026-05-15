@@ -11,7 +11,8 @@ const ALLOWED_DOMAIN = 'raicom.co';
 const ADMIN_EMAILS   = ['julio@raicom.co'];
 
 exports.handler = async function(event) {
-  const path = event.path || '';
+ const path = event.path || event.rawPath || '';
+const qs = event.queryStringParameters || {};
 
   // ── /login ────────────────────────────────────────────────
   if (path.endsWith('/login')) {
@@ -33,7 +34,7 @@ exports.handler = async function(event) {
 
   // ── /callback ─────────────────────────────────────────────
   if (path.endsWith('/callback')) {
-    const qs    = event.queryStringParameters || {};
+  
     const code  = qs.code;
     const error = qs.error;
 
