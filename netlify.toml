@@ -1,0 +1,22 @@
+# ─────────────────────────────────────────────────────────────
+#  r/CSTeam Clarification Tracker — Netlify Configuration
+#  Place this file in the ROOT of your GitHub repo alongside
+#  index.html
+# ─────────────────────────────────────────────────────────────
+
+[build]
+  publish = "."           # index.html is in the repo root
+  functions = "netlify/functions"
+
+# Clean URLs for the auth function
+[[redirects]]
+  from   = "/.netlify/functions/auth/login"
+  to     = "/.netlify/functions/auth"
+  status = 200
+  force  = true
+
+[[redirects]]
+  from   = "/.netlify/functions/auth/callback"
+  to     = "/.netlify/functions/auth"
+  status = 200
+  force  = true
